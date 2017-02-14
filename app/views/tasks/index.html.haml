@@ -1,0 +1,24 @@
+.row
+  .col-xs-12
+    %h1 My Tasks
+
+    = link_to "New Task", new_task_path, class: 'btn btn-primary mb-3'
+.row
+  .col-xs-12
+    %table.table.table-hover
+      %thead
+        %tr
+          %td Name
+          %td Description
+          %td Assignee
+          %td Actions
+      %tbody
+        - @tasks.each do |task|
+          %tr
+            %td= link_to task.title, task_path(task)
+            %td= task.description
+            %td= task.user.email
+            %td
+              = link_to "Edit", edit_task_path(task)
+              = link_to "Destroy", task_path(task), method: :delete, rel: :nofollows
+
