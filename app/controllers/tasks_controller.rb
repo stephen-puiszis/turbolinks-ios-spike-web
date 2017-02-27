@@ -16,7 +16,9 @@ class TasksController < ApplicationController
     @task = current_user.tasks.new(task_params)
     @task.save
 
-    redirect_to tasks_path(@task)
+    respond_to do |format|
+      format.js
+    end
   end
 
   def update
